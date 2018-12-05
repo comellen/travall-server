@@ -5,6 +5,7 @@ const app = express();
 
 const user = require('./controllers/usercontroller');
 const trip = require('./controllers/tripcontroller');
+const flight = require('./controllers/flightcontroller');
 
 const sequelize = require('./db');
 const bodyParser = require('body-parser');
@@ -17,6 +18,7 @@ app.use('/user', user);
 
 app.use(require('./middleware/validatesession'));
 app.use('/trips', trip);
+app.use('/flights', flight);
 
 
 app.listen(process.env.PORT, () => console.log(`.....!@#$%^&**&^%$#@! APP IS LISTENING ON ${process.env.PORT} !@#$%^&**&^%$#@!.....`));
