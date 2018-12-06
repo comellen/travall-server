@@ -1,5 +1,17 @@
+let sequelize = require('../db');
+// const Travall = sequelize.import('../models/travall');
+
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('transportation', {
+     const Transport = sequelize.define('transport', {
+        transport: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: true,
+            validate: {
+                isNumeric: true
+            },
+        },
         dOrA: {
             type: DataTypes.ENUM('Departure', 'Arrival'),
             allowNull: false,
@@ -20,9 +32,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        users: {
-            type: DataTypes.ARRAY,
+        participants: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
         },
     });
+    // Transport.belongsTo(Travall);
+
+    return Transport;
 };

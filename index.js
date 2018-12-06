@@ -4,21 +4,23 @@ const express = require('express');
 const app = express();
 
 const user = require('./controllers/usercontroller');
-const trip = require('./controllers/tripcontroller');
-const flight = require('./controllers/flightcontroller');
+const travall = require('./controllers/travallcontroller');
+// const transport = require('./controllers/transportcontroller');
 
 const sequelize = require('./db');
 const bodyParser = require('body-parser');
 
-sequelize.sync();
+sequelize.sync(
+    // {force: true}
+);
 app.use(bodyParser.json());
 app.use(require('./middleware/headers'));
 
 app.use('/user', user);
 
-app.use(require('./middleware/validatesession'));
-app.use('/trips', trip);
-app.use('/flights', flight);
+// app.use(require('./middleware/validatesession'));
+app.use('/travall', travall);
+// app.use('/transport', transport);
 
 
 app.listen(process.env.PORT, () => console.log(`.....!@#$%^&**&^%$#@! APP IS LISTENING ON ${process.env.PORT} !@#$%^&**&^%$#@!.....`));
