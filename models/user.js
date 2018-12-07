@@ -6,12 +6,15 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             validate: {
                 isEmail: true
-            }
+            },
         },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
+            validate: {
+                notEmpty: true,
+            },
         },
         password: {
             type: DataTypes.STRING,
@@ -19,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         color: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
+            defaultValue: 'grey',
         },
     });
 };

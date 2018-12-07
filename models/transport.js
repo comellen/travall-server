@@ -1,0 +1,43 @@
+// let sequelize = require('../db');
+// // const Travall = sequelize.import('../models/travall');
+
+// module.exports = (sequelize, DataTypes) => {
+//      const Transport = sequelize.define('transport', {
+//         transport: {
+//             type: DataTypes.INTEGER,
+//             primaryKey: true,
+//             autoIncrement: true,
+//             allowNull: true,
+//             validate: {
+//                 isNumeric: true
+//             },
+//         },
+//         dOrA: {
+//             type: DataTypes.ENUM('Departure', 'Arrival'),
+//             allowNull: false,
+//         },
+//         type: {
+//             type: DataTypes.ENUM('Flight', 'Train', 'Bus', 'Car', 'Boat', 'Other'),
+//             allowNull: false,
+//         },
+//         date: {
+//             type: DataTypes.DATE,
+//             allowNull: true,
+//         },
+//         upTime: {
+//             type: DataTypes.STRING,
+//             allowNull: true,
+//         },
+//         downTime: {
+//             type: DataTypes.STRING,
+//             allowNull: true,
+//         },
+//         participants: {
+//             type: DataTypes.ARRAY(DataTypes.STRING),
+//             allowNull: true,
+//         },
+//     });
+//     // Transport.belongsTo(Travall);
+
+//     return Transport;
+// };

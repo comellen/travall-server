@@ -6,9 +6,10 @@ module.exports = (req, res, next) => {
         next();
     } else {
         const sessionToken = req.headers.authorization;
-        if (!sessionToken) return res.status(403).send({ auth: false, message: 'No token provided.' });
+        if (!sessionToken) return res.status(403).send({ auth: false, message: 'No token provided.'});
         else {
             jwt.verify(sessionToken, process.env.SECRET, (err, decodedToken) => {
+                console.log("line 12 validatesession")
                 if (decodedToken) {
                     User.findOne({ where: { id: decodedToken.id } })
                         .then(user => {
