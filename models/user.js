@@ -1,18 +1,5 @@
-let sequelize = require('../db');
-// const Travall = sequelize.import('../models/travall');
-// const Transport = sequelize.import('../models/transport');
-
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('user', {
-        // userID: {
-        //     type: DataTypes.INTEGER,
-        //     primaryKey: true,
-        //     autoIncrement: true,
-        //     allowNull: true,
-        //     validate: {
-        //         isNumeric: true
-        //     },
-        // },
+    return sequelize.define('user', {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -39,9 +26,4 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 'grey',
         },
     });
-    // Travall.hasMany(User);
-    // Travall.hasMany(Transport);
-    // User.belongsToMany(Travall);
-
-    return User;
 };
