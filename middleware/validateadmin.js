@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const User = require('../db').import('../models/user');
+const Admin = require('../db').import('../models/admin');
 
 module.exports = (req, res, next) => {
-    if (req.method == 'OPTIONS') {
+    if (req.method === 'OPTIONS') {
         next();
     } else {
         const sessionToken = req.headers.authorization;
@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         else {
             jwt.verify(sessionToken, process.env.SECRET, (err, decodedToken) => {
                 if (decodedToken) {
-                    User.findOne({ where: { id: decodedToken.id } })
+                    Admin.findOne({ where: { id: decodedToken.id } })
                         .then(user => {
                             req.user = user;
                             return next();
@@ -22,4 +22,4 @@ module.exports = (req, res, next) => {
             });
         }
     }
-};
+}

@@ -16,8 +16,8 @@ User.belongsToMany(Travall, {through: 'trips'});
 Travall.hasMany(Transport);
 Travall.hasMany(Activity);
 
-Transport.belongsToMany(User);
-Activity.belongsToMany(User);
+Transport.belongsToMany(User, {through: 'userTransport'});
+Activity.belongsToMany(User, {through: 'userActivity'});
 
 
 sequelize.authenticate()

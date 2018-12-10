@@ -89,21 +89,6 @@ router.delete('/dropself', (req, res) => {
 // });
 
 
-// router.delete('/delete/:id', (req, res) => {
-//     let data = req.params.id;
-//     let owner = req.user.id;
-//     Travall.destroy({
-//         where: { id: data, owner: owner }
-//     })
-//         .then(
-//             deleteSuccess = (data) => {
-//                 res.send(`${data}`);
-//             },
-//             deleteError = (err) => {
-//                 res.send(500, err.message);
-//             }
-//         );
-// });
 
 // router.put('/update/:id', (req, res) => {
 //     let data = req.params.id;
