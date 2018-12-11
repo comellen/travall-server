@@ -23,10 +23,4 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
     });
-
-    // Activity.associate = () => {
-    //     Activity.belongsTo(Travall);
-    // };
-
-    // return Activity;
 };

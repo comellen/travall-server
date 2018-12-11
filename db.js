@@ -17,6 +17,7 @@ User.belongsToMany(Travall, {through: 'trips'});
 
 Transport.belongsTo(Travall);
 Activity.belongsTo(Travall);
+
 Travall.hasMany(Transport);
 Travall.hasMany(Activity);
 

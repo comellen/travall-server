@@ -34,9 +34,4 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
     });
-    // Transport.associate = () => {
-    //     Transport.belongsTo(Travall);
-    // };
-
-    // return Transport;
 };

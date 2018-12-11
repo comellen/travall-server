@@ -16,29 +16,22 @@ router.post('/create', (req, res) => {
         type: req.body.transport.type,
         date: req.body.transport.date,
         upTime: req.body.transport.upTime,
-        downTime: req.body.transport.downTime
+        downTime: req.body.transport.downTime,
+        travallId: req.body.transport.travallId
     })
         .then(transport => {
-            transport.addUser(req.user.id);
             res.json({ newtransport: transport });
         },
             err => { res.send(500, err.message); });
 });
 
-router.post('/addself', (req, res) => {
-    Transport.addUser(req.user.id)
-        .then(transport => {
-            res.json({ newtransport: transport });
-        },
-            err => { res.send(500, err.message); });
-});
 
 router.delete('/delete/:id', (req, res) => {
     Transport.destroy({
         where: { id: req.params.id }
     })
-        .then(data => { res.send(`${data}`); },
-            err => { res.send(500, err.message); });
+    .then(data => { res.send(`${data}`); },
+    err => { res.send(500, err.message); });
 });
 
 router.put('/update/:id', (req, res) => {
@@ -50,11 +43,18 @@ router.put('/update/:id', (req, res) => {
         upTime: req.body.transport.upTime,
         downTime: req.body.transport.downTime
     },
-        {
-            where: { id: req.params.id }
-        })
-        .then(data => { res.json({ transportupdate: data }); },
-            err => { res.send(500, err.message); });
+    {
+        where: { id: req.params.id }
+    })
+    .then(data => { res.json({ transportupdate: data }); },
+    err => { res.send(500, err.message); });
 });
 
 module.exports = router;
+    // router.post('/addself', (req, res) => {
+    //     Transport.addUser(req.user.id)
+    //         .then(transport => {
+    //             res.json({ newtransport: transport });
+    //         },
+    //             err => { res.send(500, err.message); });
+    // });
