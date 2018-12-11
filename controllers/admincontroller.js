@@ -27,13 +27,13 @@ router.post('/login', (req, res) => {
         });
 });
 
-router.get('/user/getall', validateAdmin, (req, res) => {
+router.get('/user', validateAdmin, (req, res) => {
     User.findAll()
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
 });
 
-router.get('/travall/getall', validateAdmin, (req, res) => {
+router.get('/travall', validateAdmin, (req, res) => {
     Travall.findAll()
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
