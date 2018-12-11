@@ -5,18 +5,18 @@ const User = require('../db').import('../models/user');
 const Admin = require('../db').import('../models/admin');
 
 router.post('/login', (req, res) => {
-    Admin.findOne({ where: { username: req.body.user.username }})
+    Admin.findOne({ where: { username: req.body.user.username } })
         .then(user => {
             if (user) {
                 bcrypt.compare(req.body.user.password, user.password, (err, matches) => {
                     if (matches) {
                         let token = jwt.sign({ id: user.id },
                             process.env.SECRET, { expiresIn: 60 * 60 * 24 });
-                            res.json({
-                                admin: user,
-                                message: "Successfully authenticated admin.",
-                                sessiontoken: token
-                            });
+                        res.json({
+                            admin: user,
+                            message: "Successfully authenticated admin.",
+                            sessiontoken: token
+                        });
                     } else {
                         res.status(502).send({ error: "Password not a match." })
                     }
@@ -29,54 +29,30 @@ router.post('/login', (req, res) => {
 
 router.get('/user/getall', validateAdmin, (req, res) => {
     User.findAll()
-        .then(
-            findAllSuccess = data => {
-                res.json(data);
-            },
-            findAllError = err => {
-                res.send(500, err.message);
-            }
-        );
+        .then(data => { res.json(data); },
+            err => { res.send(500, err.message); });
 });
 
 router.get('/travall/getall', validateAdmin, (req, res) => {
     Travall.findAll()
-        .then(
-            findAllSuccess = data => {
-                res.json(data);
-            },
-            findAllError = err => {
-                res.send(500, err.message);
-            }
-        );
+        .then(data => { res.json(data); },
+            err => { res.send(500, err.message); });
 });
 
 router.delete('/user/:id', validateAdmin, (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
-        .then(
-            deleteSuccess = data => {
-                res.send(`${data}`);
-            },
-            deleteError = err => {
-                res.send(500, err.message);
-            }
-        );
+        .then(data => { res.send(`${data}`); },
+            err => { res.send(500, err.message); });
 });
 
 router.delete('/travall/:id', validateAdmin, (req, res) => {
     Travall.destroy({
         where: { id: req.params.id }
     })
-        .then(
-            deleteSuccess = data => {
-                res.send(`${data}`);
-            },
-            deleteError = err => {
-                res.send(500, err.message);
-            }
-        );
+        .then(data => { res.send(`${data}`); },
+            err => { res.send(500, err.message); });
 });
 
 module.exports = router;

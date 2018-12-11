@@ -11,7 +11,7 @@ router.post('/signup', (req, res) => {
         color: req.body.user.color
     })
         .then(
-            createSuccess = user => {
+            user => {
                 let token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: 60 * 60 * 24 });
                 res.json({
                     user: user,
@@ -19,7 +19,7 @@ router.post('/signup', (req, res) => {
                     sessionToken: token
                 });
             },
-            createError = err => res.send(500, err)
+            err => res.send(500, err)
         );
 });
 
