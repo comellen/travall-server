@@ -1,5 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('transportation', {
+     return sequelize.define('transport', {
+        transport: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: true,
+            validate: {
+                isNumeric: true
+            },
+        },
         dOrA: {
             type: DataTypes.ENUM('Departure', 'Arrival'),
             allowNull: false,
@@ -9,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: true,
         },
         upTime: {
@@ -20,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        users: {
-            type: DataTypes.ARRAY,
+        participants: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
         },
     });
