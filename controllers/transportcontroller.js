@@ -5,14 +5,8 @@ router.get('/getall', (req, res) => {
     Transport.findAll({
         where: { travallId: req.body.transport.travallId }
     })
-        .then(
-            findAllSuccess = data => {
-                res.json(data);
-            },
-            findAllError = err => {
-                res.send(500, err.message);
-            }
-        );
+        .then(data => { res.json(data); },
+            err => { res.send(500, err.message); });
 });
 
 router.post('/create', (req, res) => {
@@ -36,7 +30,7 @@ router.post('/addself', (req, res) => {
         .then(transport => {
             res.json({ newtransport: transport });
         },
-        err => { res.send(500, err.message); });
+            err => { res.send(500, err.message); });
 });
 
 router.delete('/delete/:id', (req, res) => {
@@ -57,8 +51,9 @@ router.put('/update/:id', (req, res) => {
         downTime: req.body.transport.downTime,
         participants: req.body.transport.participants,
     },
-        { where: { id: req.params.id }
-    })
+        {
+            where: { id: req.params.id }
+        })
         .then(data => { res.json({ transportupdate: data }); },
             err => { res.send(500, err.message); });
 });
