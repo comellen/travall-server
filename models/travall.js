@@ -18,4 +18,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATEONLY,
         },
     });
+
+    // Travall.associate = () => {
+    //     Travall.hasMany(Transport);
+    //     Travall.hasMany(Activity);
+    // };
+
+    // return Travall;
 };

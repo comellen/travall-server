@@ -17,7 +17,7 @@ router.post('/signup', (req, res) => {
                     user: user,
                     message: 'User created',
                     sessionToken: token
-                })
+                });
             },
             createError = err => res.send(500, err)
         );
@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
                             sessionToken: token
                         });
                     } else {
-                        res.status(502).send({ error: "Passwords do not match." })
+                        res.status(502).send({ error: "Passwords do not match." });
                     }
                 });
             } else {

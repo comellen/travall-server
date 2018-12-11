@@ -13,12 +13,10 @@ const Activity = sequelize.import('./models/activity');
 Travall.belongsToMany(User, {through: 'trips'});
 User.belongsToMany(Travall, {through: 'trips'});
 
+Transport.belongsTo(Travall);
+Activity.belongsTo(Travall);
 Travall.hasMany(Transport);
 Travall.hasMany(Activity);
-
-Transport.belongsToMany(User, {through: 'userTransport'});
-Activity.belongsToMany(User, {through: 'userActivity'});
-
 
 sequelize.authenticate()
     .then(() => console.log('Connection to database successful'))
