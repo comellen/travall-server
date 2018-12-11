@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Transport = require('../db').import('../models/transport');
+const Activity = require('../db').import('../models/activity');
 
 router.get('/getall', (req, res) => {
     Transport.findAll({
@@ -63,4 +63,4 @@ router.put('/update/:id', (req, res) => {
             err => { res.send(500, err.message); });
 });
 
-module.exports = router;
+// module.exports = router;

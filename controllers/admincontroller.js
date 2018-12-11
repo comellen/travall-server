@@ -11,7 +11,7 @@ router.post('/login', (req, res) => {
                 bcrypt.compare(req.body.user.password, user.password, (err, matches) => {
                     if (matches) {
                         let token = jwt.sign({ id: user.id },
-                            process.env.SECRET, { expiresIn: 60* 60 * 24 });
+                            process.env.SECRET, { expiresIn: 60 * 60 * 24 });
                             res.json({
                                 admin: user,
                                 message: "Successfully authenticated admin.",
@@ -51,7 +51,7 @@ router.get('/travall/getall', validateAdmin, (req, res) => {
         );
 });
 
-router.delete('/user/delete/:id', validateAdmin, (req, res) => {
+router.delete('/user/:id', validateAdmin, (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
@@ -65,7 +65,7 @@ router.delete('/user/delete/:id', validateAdmin, (req, res) => {
         );
 });
 
-router.delete('/travall/delete/:id', validateAdmin, (req, res) => {
+router.delete('/travall/:id', validateAdmin, (req, res) => {
     Travall.destroy({
         where: { id: req.params.id }
     })
