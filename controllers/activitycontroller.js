@@ -2,45 +2,39 @@ const router = require('express').Router();
 const Activity = require('../db').import('../models/activity');
 
 router.get('/getall', (req, res) => {
-    Transport.findAll({
+    Activity.findAll({
         where: { travallId: req.body.transport.travallId }
     })
-        .then(
-            findAllSuccess = data => {
-                res.json(data);
-            },
-            findAllError = err => {
-                res.send(500, err.message);
-            }
-        );
+        .then(data => { res.json(data); },
+            err => { res.send(500, err.message); });
 });
 
 router.post('/create', (req, res) => {
-    Transport.create({
-        transport: req.body.transport.transport,
-        dOrA: req.body.transport.dOrA,
-        type: req.body.transport.type,
-        date: req.body.transport.date,
-        upTime: req.body.transport.upTime,
-        downTime: req.body.transport.downTime
+    Activity.create({
+        title: req.body.activity.title,
+        date: req.body.activity.date,
+        startTime: req.body.activity.startTime,
+        endTime: req.body.activity.endTime,
+        location: req.body.activity.location,
+        description: req.body.activity.description
     })
-        .then(transport => {
-            transport.addUser(req.user.id);
-            res.json({ newtransport: transport });
+        .then(activity => {
+            activity.addUser(req.user.id);
+            res.json({ newactivity: activity });
         },
             err => { res.send(500, err.message); });
 });
 
 router.post('/addself', (req, res) => {
-    Transport.addUser(req.user.id)
-        .then(transport => {
-            res.json({ newtransport: transport });
+    Activity.addUser(req.user.id)
+        .then(activity => {
+            res.json({ newactivity: activity });
         },
-        err => { res.send(500, err.message); });
+            err => { res.send(500, err.message); });
 });
 
 router.delete('/delete/:id', (req, res) => {
-    Transport.destroy({
+    Activity.destroy({
         where: { id: req.params.id }
     })
         .then(data => { res.send(`${data}`); },
@@ -48,19 +42,19 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 router.put('/update/:id', (req, res) => {
-    Transport.update({
-        transport: req.body.transport.transport,
-        dOrA: req.body.transport.dOrA,
-        type: req.body.transport.type,
-        date: req.body.transport.date,
-        upTime: req.body.transport.upTime,
-        downTime: req.body.transport.downTime,
-        participants: req.body.transport.participants,
+    Activity.update({
+        title: req.body.activity.title,
+        date: req.body.activity.date,
+        startTime: req.body.activity.startTime,
+        endTime: req.body.activity.endTime,
+        location: req.body.activity.location,
+        description: req.body.activity.description
     },
-        { where: { id: req.params.id }
-    })
-        .then(data => { res.json({ transportupdate: data }); },
+        {
+            where: { id: req.params.id }
+        })
+        .then(data => { res.json({ activityupdate: data }); },
             err => { res.send(500, err.message); });
 });
 
-// module.exports = router;
+module.exports = router;

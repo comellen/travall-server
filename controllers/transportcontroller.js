@@ -48,8 +48,7 @@ router.put('/update/:id', (req, res) => {
         type: req.body.transport.type,
         date: req.body.transport.date,
         upTime: req.body.transport.upTime,
-        downTime: req.body.transport.downTime,
-        participants: req.body.transport.participants,
+        downTime: req.body.transport.downTime
     },
         {
             where: { id: req.params.id }
