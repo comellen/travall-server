@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.NAME, process.env.USERNAME, process.env.PASS, {
-    host: 'localhost',
-    dialect: 'postgres'
-});
+const sequelize = new Sequelize(
+    process.env.DATABASE_URL ||
+    `postgresql://postgres:${encodeURIComponent(process.env.PASS)}@localhost/${process.env.NAME}`,
+    {
+        dialect: 'postgres',
+    });
 
 const User = sequelize.import('./models/user');
 const Travall = sequelize.import('./models/travall');
@@ -15,6 +17,7 @@ User.belongsToMany(Travall, {through: 'trips'});
 
 Transport.belongsTo(Travall);
 Activity.belongsTo(Travall);
+
 Travall.hasMany(Transport);
 Travall.hasMany(Activity);
 

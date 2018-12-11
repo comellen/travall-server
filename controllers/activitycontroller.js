@@ -16,29 +16,22 @@ router.post('/create', (req, res) => {
         startTime: req.body.activity.startTime,
         endTime: req.body.activity.endTime,
         location: req.body.activity.location,
-        description: req.body.activity.description
+        description: req.body.activity.description,
+        travallId: req.body.activity.travallId
     })
         .then(activity => {
-            activity.addUser(req.user.id);
             res.json({ newactivity: activity });
         },
             err => { res.send(500, err.message); });
 });
 
-router.post('/addself', (req, res) => {
-    Activity.addUser(req.user.id)
-        .then(activity => {
-            res.json({ newactivity: activity });
-        },
-            err => { res.send(500, err.message); });
-});
 
 router.delete('/delete/:id', (req, res) => {
     Activity.destroy({
         where: { id: req.params.id }
     })
-        .then(data => { res.send(`${data}`); },
-            err => { res.send(500, err.message); });
+    .then(data => { res.send(`${data}`); },
+    err => { res.send(500, err.message); });
 });
 
 router.put('/update/:id', (req, res) => {
@@ -50,11 +43,18 @@ router.put('/update/:id', (req, res) => {
         location: req.body.activity.location,
         description: req.body.activity.description
     },
-        {
-            where: { id: req.params.id }
-        })
-        .then(data => { res.json({ activityupdate: data }); },
-            err => { res.send(500, err.message); });
+    {
+        where: { id: req.params.id }
+    })
+    .then(data => { res.json({ activityupdate: data }); },
+    err => { res.send(500, err.message); });
 });
 
 module.exports = router;
+    // router.post('/addself', (req, res) => {
+    //     Activity.addUser(req.user.id)
+    //         .then(activity => {
+    //             res.json({ newactivity: activity });
+    //         },
+    //             err => { res.send(500, err.message); });
+    // });
