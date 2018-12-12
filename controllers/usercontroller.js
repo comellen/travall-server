@@ -5,27 +5,29 @@ const jwt = require('jsonwebtoken');
 
 router.post('/signup', (req, res) => {
     User.create({
-        email: req.body.user.email,
-        password: bcrypt.hashSync(req.body.user.password, 10)
+        email: req.body.email,
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password, 10),
+        color: req.body.color
     })
         .then(
-            createSuccess = (user) => {
+            user => {
                 let token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: 60 * 60 * 24 });
                 res.json({
                     user: user,
                     message: 'User created',
                     sessionToken: token
-                })
+                });
             },
-            createError = err => res.send(500, err)
+            err => res.send(500, err)
         );
 });
 
 router.post('/login', (req, res) => {
-    User.findOne({ where: { email: req.body.user.email } })
+    User.findOne({ where: { username: req.body.username } })
         .then(user => {
             if (user) {
-                bcrypt.compare(req.body.user.password, user.password, (err, matches) => {
+                bcrypt.compare(req.body.password, user.password, (err, matches) => {
                     if (matches) {
                         let token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: 60 * 60 * 24 });
                         res.json({
@@ -34,7 +36,7 @@ router.post('/login', (req, res) => {
                             sessionToken: token
                         });
                     } else {
-                        res.status(502).send({ error: "Passwords do not match." })
+                        res.status(502).send({ error: "Passwords do not match." });
                     }
                 });
             } else {

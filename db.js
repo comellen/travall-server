@@ -1,19 +1,25 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.NAME, process.env.USERNAME, process.env.PASS, {
-    host: 'localhost',
-    dialect: 'postgres'
-});
+const sequelize = new Sequelize(
+    process.env.DATABASE_URL ||
+    `postgresql://postgres:${encodeURIComponent(process.env.PGPASS)}@localhost/${process.env.DBNAME}`,
+    {
+        dialect: 'postgres',
+    });
 
-const User = require('./models/user');
-const Travall = require('./models/user');
-const Transportation = require('./models/user');
-// const Activity = require('./models/activity');
+const User = sequelize.import('./models/user');
+const Travall = sequelize.import('./models/travall');
+const Transport = sequelize.import('./models/transport');
+const Activity = sequelize.import('./models/activity');
 
 
-User.belongsToMany(Travall); //should create another table 
-Travall.hasMany(User);
-Transportation.belongsTo(Travall);
-// Activity.belongsTo(Travall);
+Travall.belongsToMany(User, {through: 'trips'});
+User.belongsToMany(Travall, {through: 'trips'});
+
+Transport.belongsTo(Travall);
+Activity.belongsTo(Travall);
+
+Travall.hasMany(Transport);
+Travall.hasMany(Activity);
 
 sequelize.authenticate()
     .then(() => console.log('Connection to database successful'))
