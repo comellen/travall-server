@@ -11,13 +11,12 @@ router.get('/getall', (req, res) => {
 
 router.post('/create', (req, res) => {
     Transport.create({
-        transport: req.body.transport.transport,
-        dOrA: req.body.transport.dOrA,
-        type: req.body.transport.type,
-        date: req.body.transport.date,
-        upTime: req.body.transport.upTime,
-        downTime: req.body.transport.downTime,
-        travallId: req.body.transport.travallId
+        dOrA: req.body.dOrA,
+        type: req.body.type,
+        date: req.body.date,
+        upTime: req.body.upTime,
+        downTime: req.body.downTime,
+        participants: req.body.participants
     })
         .then(transport => {
             res.json({ newtransport: transport });
@@ -36,12 +35,12 @@ router.delete('/delete/:id', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
     Transport.update({
-        transport: req.body.transport.transport,
-        dOrA: req.body.transport.dOrA,
-        type: req.body.transport.type,
-        date: req.body.transport.date,
-        upTime: req.body.transport.upTime,
-        downTime: req.body.transport.downTime
+        dOrA: req.body.dOrA,
+        type: req.body.type,
+        date: req.body.date,
+        upTime: req.body.upTime,
+        downTime: req.body.downTime,
+        participants: req.body.participants
     },
         {
             where: { id: req.params.id }

@@ -5,11 +5,11 @@ const User = require('../db').import('../models/user');
 //WORKS
 router.post('/create', (req, res) => {
     Travall.create({
-        title: req.body.travall.title,
-        location: req.body.travall.location,
-        type: req.body.travall.type,
-        startDate: req.body.travall.startDate,
-        endDate: req.body.travall.endDate
+        title: req.body.title,
+        location: req.body.location,
+        type: req.body.type,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate
     })
         .then(travall => {
             travall.addUser(req.user.id);
@@ -88,12 +88,11 @@ router.get('/getall', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
     Travall.update({
-        travall: req.body.travall.travall,
-        title: req.body.travall.title,
-        location: req.body.travall.location,
-        type: req.body.travall.type,
-        startDate: req.body.travall.startDate,
-        endDate: req.body.travall.endDate
+        title: req.body.title,
+        location: req.body.location,
+        type: req.body.type,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate
     },
         { where: { id: req.params.id } }
     )

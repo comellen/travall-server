@@ -11,13 +11,13 @@ router.get('/getall', (req, res) => {
 
 router.post('/create', (req, res) => {
     Activity.create({
-        title: req.body.activity.title,
-        date: req.body.activity.date,
-        startTime: req.body.activity.startTime,
-        endTime: req.body.activity.endTime,
-        location: req.body.activity.location,
-        description: req.body.activity.description,
-        travallId: req.body.activity.travallId
+        title: req.body.title,
+        date: req.body.date,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        location: req.body.location,
+        description: req.body.description,
+        travallId: req.body.travallId
     })
         .then(activity => {
             res.json({ newactivity: activity });
@@ -36,12 +36,12 @@ router.delete('/delete/:id', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
     Activity.update({
-        title: req.body.activity.title,
-        date: req.body.activity.date,
-        startTime: req.body.activity.startTime,
-        endTime: req.body.activity.endTime,
-        location: req.body.activity.location,
-        description: req.body.activity.description
+        title: req.body.title,
+        date: req.body.date,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        location: req.body.location,
+        description: req.body.description
     },
     {
         where: { id: req.params.id }

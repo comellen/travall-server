@@ -1,14 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
      return sequelize.define('transport', {
-        transport: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull: true,
-            validate: {
-                isNumeric: true
-            },
-        },
         dOrA: {
             type: DataTypes.ENUM('Departure', 'Arrival'),
             allowNull: false,
