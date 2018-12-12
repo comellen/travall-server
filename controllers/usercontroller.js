@@ -4,7 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 router.post('/signup', (req, res) => {
-    User.create({ req.body })
+    User.create({
+        email: req.body.email,
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password, 10),
+        color: req.body.color
+    })
         .then(
             user => {
                 let token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: 60 * 60 * 24 });
@@ -19,10 +24,10 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    User.findOne({ where: { username: req.body.user.username } })
+    User.findOne({ where: { username: req.body.username } })
         .then(user => {
             if (user) {
-                bcrypt.compare(req.body.user.password, user.password, (err, matches) => {
+                bcrypt.compare(req.body.password, user.password, (err, matches) => {
                     if (matches) {
                         let token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: 60 * 60 * 24 });
                         res.json({
