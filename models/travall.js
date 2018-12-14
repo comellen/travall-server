@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         type: {
-            type: DataTypes.ENUM('Business', 'Family', 'Fun', 'Pleasure', 'Vacation'),
+            type: DataTypes.STRING,
         },
         startDate: {
             type: DataTypes.DATEONLY,
