@@ -67,11 +67,11 @@ router.delete('/dropself/:id', (req, res) => {
 });
 
 //WORKS
-router.get('/getall', (req, res) => {
+router.get('/getall/:id', (req, res) => {
     Travall.findAll({
         include: {
             model: User,
-            where: { id: req.user.id }
+            where: { id: req.params.id }
         }
     })
         .then(data => {
