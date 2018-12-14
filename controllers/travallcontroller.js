@@ -12,6 +12,7 @@ router.post('/create', (req, res) => {
         endDate: req.body.endDate
     })
         .then(travall => {
+            console.log(req.body)
             travall.addUser(req.body.user.user.id);
             res.json({ newtravall: travall }, {reqbody: req.body});
         },
