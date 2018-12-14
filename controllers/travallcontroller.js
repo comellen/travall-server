@@ -22,7 +22,7 @@ router.post('/create', (req, res) => {
 router.post('/adduser/:travallid', (req, res) => {
     Travall.findById(req.params.travallid)
         .then(travall => {
-            User.findOne({ where: { email: req.body.newUser.email } })
+            User.findOne({ where: { email: req.body.email } })
                 .then(user => {
                     travall.addUser(user.id)
                 })
@@ -32,9 +32,7 @@ router.post('/adduser/:travallid', (req, res) => {
 });
 //REQUEST TO SEND TO ABOVE FUNCTION:
 // {
-//"newUser": {
 //"email": "<entered email>"
-// }
 // }
 
 //WORKS
@@ -49,22 +47,20 @@ router.delete('/dropuser/:travallid/:userid', (req, res) => {
                     err => { res.send(500, err.message); });
         });
 });
-//REQUEST TO SEND TO ABOVE FUNCTION:
-// {
-//"dropUser": {
-//"thisTravallID": "<integer>",
-//"userID": "id of user to drop"
-// }
-// }
+
+router.get('/getcrew/:travallid', (req, res) => {
+    Travall.findById(req.params.travallid, { include: User })
+        .then(data => { res.json({ data }) },
+            err => res.send(500, err.message))
+});
+
 
 //WORKS
 router.delete('/dropself/:id', (req, res) => {
     Travall.findById(req.params.id)
         .then(travall => {
             User.findOne({ where: { id: req.user.id } })
-                .then(user => {
-                    travall.removeUser(user.id)
-                })
+                .then(user => { travall.removeUser(user.id) })
                 .then(data => { res.json({ dropped: data }); },
                     err => { res.send(500, err.message); });
         });
