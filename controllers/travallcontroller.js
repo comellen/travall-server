@@ -13,7 +13,7 @@ router.post('/create', (req, res) => {
     })
         .then(travall => {
             travall.addUser(req.body.user.user.id);
-            res.json({newtravall: travall});
+            res.json({currentTravall: travall});
         },
             err => { res.send(500, err.message); });
 });
@@ -48,9 +48,9 @@ router.delete('/dropuser/:travallid/:userid', (req, res) => {
         });
 });
 
-router.get('/getcrew/:travallid', (req, res) => {
-    Travall.findById(req.params.travallid, { include: User })
-        .then(data => { res.json({ data }) },
+router.get('/getcrew/:id', (req, res) => {
+    Travall.findById(req.params.id , { include: User })
+        .then(members => { res.json({ crewMembers: members }) },
             err => res.send(500, err.message))
 });
 
