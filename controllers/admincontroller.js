@@ -35,7 +35,7 @@ router.post('/login', (req, res) => {
                         res.json({
                             admin: user,
                             message: "Successfully authenticated admin.",
-                            sessiontoken: token
+                            sessionToken: token
                         });
                     } else {
                         res.status(502).send({ error: "Password not a match." })
