@@ -5,10 +5,10 @@ const User = require('../db').import('../models/user');
 const Admin = require('../db').import('../models/admin');
 
 router.post('/login', (req, res) => {
-    Admin.findOne({ where: { username: req.body.user.username } })
+    Admin.findOne({ where: { username: req.body.username } })
         .then(user => {
             if (user) {
-                bcrypt.compare(req.body.user.password, user.password, (err, matches) => {
+                bcrypt.compare(req.body.password, user.password, (err, matches) => {
                     if (matches) {
                         let token = jwt.sign({ id: user.id },
                             process.env.SECRET, { expiresIn: 60 * 60 * 24 });

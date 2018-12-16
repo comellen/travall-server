@@ -50,7 +50,7 @@ router.delete('/dropuser/:travallid/:userid', (req, res) => {
 
 router.get('/getcrew/:id', (req, res) => {
     Travall.findById(req.params.id , { include: User })
-        .then(members => { res.json({ crewMembers: members }) },
+        .then(members => { res.json({ members }) },
             err => res.send(500, err.message))
 });
 
@@ -75,7 +75,6 @@ router.get('/getall/:id', (req, res) => {
         }
     })
         .then(data => {
-            console.log(data);
             res.json(data);
         },
             err => { res.send(500, err.message); });
