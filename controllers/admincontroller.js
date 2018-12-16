@@ -3,6 +3,8 @@ const validateAdmin = require('../middleware/validateadmin');
 const Travall = require('../db').import('../models/travall');
 const User = require('../db').import('../models/user');
 const Admin = require('../db').import('../models/admin');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 router.post('/signup', (req, res) => {
     Admin.create({
