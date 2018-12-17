@@ -47,19 +47,19 @@ router.post('/login', (req, res) => {
         });
 });
 
-router.get('/user', validateAdmin, (req, res) => {
+router.get('/user',  (req, res) => {
     User.findAll()
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
 });
 
-router.get('/travall', validateAdmin, (req, res) => {
+router.get('/travall', (req, res) => {
     Travall.findAll()
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
 });
 
-router.delete('/user/:id', validateAdmin, (req, res) => {
+router.delete('/user/:id', (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
@@ -67,7 +67,7 @@ router.delete('/user/:id', validateAdmin, (req, res) => {
             err => { res.send(500, err.message); });
 });
 
-router.delete('/travall/:id', validateAdmin, (req, res) => {
+router.delete('/travall/:id',  (req, res) => {
     Travall.destroy({
         where: { id: req.params.id }
     })
