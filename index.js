@@ -21,7 +21,7 @@ app.use(require('./middleware/headers'));
 app.use('/user', user);
 app.use('/admin', admin);
 
-app.use(require('./middleware/validatesession'));
+// app.use(require('./middleware/validatesession'));
 
 app.use('/travall', travall);
 app.use('/transport', transport);
