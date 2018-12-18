@@ -13,7 +13,7 @@ const sequelize = require('./db');
 const bodyParser = require('body-parser');
 
 sequelize.sync(
-    {force: true}
+    // {force: true}
 );
 app.use(bodyParser.json());
 app.use(require('./middleware/headers'));
