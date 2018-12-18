@@ -3,7 +3,7 @@ const Activity = require('../db').import('../models/activity');
 
 router.get('/getall', (req, res) => {
     Activity.findAll({
-        where: { travallId: req.body.transport.travallId }
+        where: { travallId: req.body.travallId }
     })
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
@@ -20,7 +20,7 @@ router.post('/create', (req, res) => {
         travallId: req.body.travallId
     })
         .then(activity => {
-            res.json({ newactivity: activity });
+            res.json({ activity });
         },
             err => { res.send(500, err.message); });
 });

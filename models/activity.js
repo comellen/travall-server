@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
     return sequelize.define('activity', {
        title: {
            type: DataTypes.STRING,
-           allowNull: false,
+           allowNull: true,
            validate: {
                isAlphanumeric: true
            },
@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         description: {
             type: DataTypes.STRING,
+        },
+        travallId: {
+            type: DataTypes.INTEGER,
         },
     });
 };

@@ -3,7 +3,7 @@ const Transport = require('../db').import('../models/transport');
 
 router.get('/getall', (req, res) => {
     Transport.findAll({
-        where: { travallId: req.body.transport.travallId }
+        where: { travallId: req.body.travallId }
     })
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
@@ -16,10 +16,11 @@ router.post('/create', (req, res) => {
         date: req.body.date,
         upTime: req.body.upTime,
         downTime: req.body.downTime,
-        participants: req.body.participants
+        participants: req.body.participants,
+        travallId: req.body.travallId
     })
         .then(transport => {
-            res.json({ newtransport: transport });
+            res.json({ transport });
         },
             err => { res.send(500, err.message); });
 });

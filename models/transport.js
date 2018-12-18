@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) => {
      return sequelize.define('transport', {
         dOrA: {
             type: DataTypes.ENUM('Departure', 'Arrival'),
-            allowNull: false,
+            allowNull: true,
         },
         type: {
             type: DataTypes.ENUM('Flight', 'Train', 'Bus', 'Car', 'Boat', 'Other'),
-            allowNull: false,
+            allowNull: true,
         },
         date: {
             type: DataTypes.DATEONLY,
@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
         participants: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
+        },
+        travallId: {
+            type: DataTypes.INTEGER,
         },
     });
 };

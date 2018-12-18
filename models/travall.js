@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) => {
     return sequelize.define('travall', {
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         location: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         type: {
             type: DataTypes.STRING,
