@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const Transport = require('../db').import('../models/transport');
 
-router.get('/getall', (req, res) => {
+router.get('/getall/:travallid', (req, res) => {
     Transport.findAll({
-        where: { travallId: req.body.travallId }
+        where: { travallId: req.params.travallid }
     })
         .then(data => { res.json(data); },
             err => { res.send(500, err.message); });
