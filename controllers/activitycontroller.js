@@ -9,6 +9,14 @@ router.get('/getall/:travallid', (req, res) => {
             err => { res.send(500, err.message); });
 });
 
+router.get('/:id', (req, res) => {
+    Activity.findOne({
+        where: { id: req.params.id }
+    })
+        .then(data => res.send(data),
+        err => res.send(500, err.message));
+});
+
 router.post('/create', (req, res) => {
     Activity.create({
         title: req.body.title,

@@ -9,6 +9,14 @@ router.get('/getall/:travallid', (req, res) => {
             err => { res.send(500, err.message); });
 });
 
+router.get('/:id', (req, res) => {
+    Transport.findOne({
+        where: { id: req.params.id }
+    })
+        .then(data => res.send(data),
+        err => res.send(500, err.message));
+});
+
 router.post('/create', (req, res) => {
     Transport.create({
         dOrA: req.body.dOrA,
