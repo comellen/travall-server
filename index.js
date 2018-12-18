@@ -24,7 +24,8 @@ app.use('/admin', admin);
 app.use(require('./middleware/validatesession'));
 
 app.use('/travall', travall);
-// app.use('/transport', transport);
+app.use('/transport', transport);
+app.use('/activity', activity);
 
 
 app.listen(process.env.PORT, () => console.log(`.....!@#$%^&**&^%$#@! APP IS LISTENING ON ${process.env.PORT} !@#$%^&**&^%$#@!.....`));
