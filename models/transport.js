@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         participants: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.STRING,
             allowNull: true,
         },
         travallId: {
