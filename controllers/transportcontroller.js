@@ -51,10 +51,3 @@ router.put('/update/:id', (req, res) => {
 });
 
 module.exports = router;
-    // router.post('/addself', (req, res) => {
-    //     Transport.addUser(req.user.id)
-    //         .then(transport => {
-    //             res.json({ newtransport: transport });
-    //         },
-    //             err => { res.send(500, err.message); });
-    // });

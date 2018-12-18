@@ -51,10 +51,3 @@ router.put('/update/:id', (req, res) => {
 });
 
 module.exports = router;
-    // router.post('/addself', (req, res) => {
-    //     Activity.addUser(req.user.id)
-    //         .then(activity => {
-    //             res.json({ newactivity: activity });
-    //         },
-    //             err => { res.send(500, err.message); });
-    // });
