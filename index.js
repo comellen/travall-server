@@ -7,7 +7,7 @@ const admin = require('./controllers/admincontroller');
 const user = require('./controllers/usercontroller');
 const travall = require('./controllers/travallcontroller');
 const transport = require('./controllers/transportcontroller');
-// const activity = require('./controllers/activitycontroller');
+const activity = require('./controllers/activitycontroller');
 
 const sequelize = require('./db');
 const bodyParser = require('body-parser');
