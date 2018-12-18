@@ -13,7 +13,7 @@ router.post('/create', (req, res) => {
     })
         .then(travall => {
             travall.addUser(req.body.user.user.id);
-            res.json({ newTravall: travall });
+            res.json({ travall });
         },
             err => { res.send(500, err.message); });
 });
