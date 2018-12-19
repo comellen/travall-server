@@ -8,10 +8,10 @@
 6. [Contact]( ## Contact)
 
 ## About 
-Travall is a collaborative application where you can help stay organized with other about your upcoming travel plans.  Creating a Travall will allow you to others to your upcoming trip as well as display your transportation details and any/all activities you would like to do while on the trip.  Travall will keep you and your friends/family organized and informed about your next upcoming travall plans.  
+Travall is a collaborative application to help you stay organized with others about your upcoming travel plans.  Creating a Travall will allow you to invite others to your upcoming trip as well as display your transportation details and all activities you would like to do while on the trip.  Travall will keep you and your loved ones organized and up-to-date about your next upcoming travall plans.
 
 ## Motivation
-Travall was created to have one centralized location to plan a trips with loved ones that you do not get to see every day.  Life is busy and by logging into the Travall app,  you are instantly informed about who is coming, when they are coming, and what they would like to do once they arrive. Upgrades/ new features will continue to be added to better help stay organized and informed about upcoming plans with one other person or a great many others.
+Travall was created to have one centralized location to plan trips with loved ones.  Life is busy but by logging into the Travall app, you are instantly informed about who is coming, when they are coming, and what they would like to do once they arrive. Upgrades/ new features will continue to be added to better help you stay organized and informed about upcoming plans!
 
 ## Tech/framework used
 
